@@ -25,12 +25,18 @@ git status -s // 当前文件状态
 
 # git回退版本（版本已在仓库）的3种模式
 ```
-git log --online // 查看提交历史
+git log --oneline // 查看提交历史
 
-git reset --soft 版本号 // 保留工作区，暂存区为跟踪文件。 其他已有文件覆盖
+// 当前提交 A->B->C
 
-git reset --hard 版本号 // 全覆盖，不做任何保留
+git reset --soft B版本号 // 想撤销最近几次 commit，但保留所有修改并继续改/重新.改动全在暂存区。
 
-git reset 版本号 // 保留工作区，不保留暂存区。 与 git reset --mixed 等价
+git reset B版本号 //  与 git reset --mixed 等价. 想撤销 commit，改动保留在磁盘上，但先不要暂存（重新挑选要 add 的文件）。 
+
+git reset --hard B版本号 
+//  想工作区、暂存区、分支都回到某个干净提交，不要那些未提交的修改。
+// 慎用：会丢本地已跟踪文件的修改；未 git add 的新文件默认不会被删。
+
+
 
 ```
